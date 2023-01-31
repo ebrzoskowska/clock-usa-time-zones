@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> USA Time zones </title>
+
+<!------ Fonts & Icons------>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;700;800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/dho0gsv.css">
+    <script src="https://kit.fontawesome.com/18719d7896.js" crossorigin="anonymous"></script>
+
+<!------ JS libraries ------>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.31/moment-timezone-with-data.min.js"></script>
+
+    <style>
+
+/*---------------------------------- general ----------------------------------*/
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Roboto', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1em;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-container {
+      background: #000;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Roboto', Helvetica, 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1em;
+      height: 90vh;
+      flex-wrap: wrap;
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
+
+    .clock-wrapper {
+      display: flex;
+      flex-direction: column;
+      margin: 1em;
+    }
+
+    .clock-wrapper p {
+      padding-top: 1em;
+    }
+
+    .clock {
+      width: 150px;
+      height: 150px;
+      border: 8px solid #FFF;
+      border-radius: 50%;
+      position: relative;
+      padding: 0.5rem;
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px);
+    }
+
+    .hand {
+      width: 50%;
+      background-color: #FFF;
+      position: absolute;
+      top: 50%;
+      transform-origin: 100%;
+      transform: rotate(90deg);
+      transition-timing-function: cubic-bezier(0.12, 2.13, 0.28, 2.23);
+    }
+
+    .hour-hand {
+      height: 6px;
+      background-color: rgb(135, 85, 226);
+    }
+
+    .minute-hand {
+      height: 3px;
+      background-color: rgb(235, 173, 224);
+    }
+
+    .second-hand {
+      height: 1px;
+    }
+
+    @media (max-width: 540px) {
+      .main-container { height: 100%; }
+    }  
+
+  </style>
+  </head>
+  <body>
+    <div class="main-container">
+
+      <div class='clock-wrapper'>
+        <div class='clock'>
+          <div class='clock-face'>
+            <div class='hand hour-hand' id='uk-hour-hand'></div>
+            <div class='hand minute-hand' id='uk-minute-hand'></div>
+            <div class='hand second-hand' id='uk-second-hand'></div>
+          </div>
+        </div>
+        <p> UK time zone </p>
+        <h2> LONDON </h2>
+      </div>
+
+      <div class='clock-wrapper'>
+        <div class='clock'>
+          <div class='clock-face'>
+            <div class='hand hour-hand' id='hst-hour-hand'></div>
+            <div class='hand minute-hand' id='hst-minute-hand'></div>
+            <div class='hand second-hand' id='hst-second-hand'></div>
+          </div>
+        </div>
+        <p> Hawaii time zone </p>
+        <h2> HONOLULU </h2>
+      </div>
+
+      <div class='clock-wrapper'>
+        <div class='clock'>
+          <div class='clock-face'>
+            <div class='hand hour-hand' id='akst-hour-hand'></div>
+            <div class='hand minute-hand' id='akst-minute-hand'></div>
+            <div class='hand second-hand' id='akst-second-hand'></div>
+          </div>
+        </div>
+        <p> Alaska time zone </p>
+        <h2> ANCHORAGE </h2>
+      </div>
+
+      <div class='clock-wrapper'>
+        <div class='clock'>
+          <div class='clock-face'>
+            <div class='hand hour-hand' id='pst-hour-hand'></div>
+            <div class='hand minute-hand' id='pst-minute-hand'></div>
+            <div class='hand second-hand' id='pst-second-hand'></div>
+          </div>
+        </div>
+        <p> Pacific time zone </p>
+        <h2> LOS ANGELES </h2>
+      </div>
+
+      <div class='clock-wrapper'>
+        <div class='clock'>
+          <div class='clock-face'>
+            <div class='hand hour-hand' id='mst-hour-hand'></div>
+            <div class='hand minute-hand' id='mst-minute-hand'></div>
+            <div class='hand second-hand' id='mst-second-hand'></div>
+          </div>
+        </div>
+        <p> Mountain time zone </p>
+        <h2> SALT LAKE CITY </h2>
+      </div>
+
+      <div class='clock-wrapper'>
+        <div class='clock'>
+          <div class='clock-face'>
+            <div class='hand hour-hand' id='cst-hour-hand'></div>
+            <div class='hand minute-hand' id='cst-minute-hand'></div>
+            <div class='hand second-hand' id='cst-second-hand'></div>
+          </div>
+        </div>
+        <p> Central time zone </p>
+        <h2> CHICAGO </h2>
+      </div>
+
+      <div class='clock-wrapper'>
+        <div class='clock'>
+          <div class='clock-face'>
+            <div class='hand hour-hand' id='est-hour-hand'></div>
+            <div class='hand minute-hand' id='est-minute-hand'></div>
+            <div class='hand second-hand' id='est-second-hand'></div>
+          </div>
+        </div>
+        <p> Eastern time zone </p>
+        <h2> NEW YORK </h2>
+      </div>
+      
+    </div><!-----end of main container--------->
+
+  <script>
+
+    const timezones = [
+      { timeLag: 0, hourHandId: 'uk-hour-hand', minuteHandId: 'uk-minute-hand', secondHandId: 'uk-second-hand' },
+      { timeLag: -600, hourHandId: 'hst-hour-hand', minuteHandId: 'hst-minute-hand', secondHandId: 'hst-second-hand' },
+      { timeLag: -540, hourHandId: 'akst-hour-hand', minuteHandId: 'akst-minute-hand', secondHandId: 'akst-second-hand' },
+      { timeLag: -480, hourHandId: 'pst-hour-hand', minuteHandId: 'pst-minute-hand', secondHandId: 'pst-second-hand' },
+      { timeLag: -420, hourHandId: 'mst-hour-hand', minuteHandId: 'mst-minute-hand', secondHandId: 'mst-second-hand' },
+      { timeLag: -360, hourHandId: 'cst-hour-hand', minuteHandId: 'cst-minute-hand', secondHandId: 'cst-second-hand' },
+      { timeLag: -300, hourHandId: 'est-hour-hand', minuteHandId: 'est-minute-hand', secondHandId: 'est-second-hand' },
+    ];  
+
+    const setTime = (timeLag, hourHandId, minuteHandId, secondHandId) => {
+      const now = new Date().getTime();
+      const time = new Date(now - (timeLag * 60 * 1000));
+      const hours = time.getHours();
+      const minutes = time.getMinutes();
+      const seconds = time.getSeconds();
+      const hoursDeg = ((hours / 12) * 360 + 90);
+      const minutesDeg = ((minutes / 60) * 360 + 90);
+      const secondsDeg = ((seconds / 60) * 360 + 90);
+      document.getElementById(hourHandId).style.transform = `rotate(${hoursDeg}deg)`;
+      document.getElementById(minuteHandId).style.transform = `rotate(${minutesDeg}deg)`;
+      document.getElementById(secondHandId).style.transform = `rotate(${secondsDeg}deg)`;
+    }
+
+    setInterval(() => {
+      timezones.forEach((timezone) => {
+        setTime(timezone.timeLag, timezone.hourHandId, timezone.minuteHandId, timezone.secondHandId);
+      });
+    }, 1000);
+
+    // or:  
+    // setInterval(() => setTime(0, 'uk-hour-hand', 'uk-minute-hand', 'uk-second-hand'), 1000);
+    // setInterval(() => setTime(-600, 'hst-hour-hand', 'hst-minute-hand', 'hst-second-hand'), 1000);
+    // setInterval(() => setTime(-540, 'akst-hour-hand', 'akst-minute-hand', 'akst-second-hand'), 1000);
+
+  </script>  
+</body>
+</html>
